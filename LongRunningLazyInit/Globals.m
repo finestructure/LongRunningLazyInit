@@ -32,8 +32,11 @@
 
 
 - (NSString *)slowInitForKey:(NSString *)key {
-  sleep(5);
-  return [NSString stringWithFormat:@"value for key: %@", key];
+  NSLog(@"slowInitForKey: %@", key);
+  sleep(arc4random() % 6 +1);
+  NSString *value = [NSString stringWithFormat:@"<value %@>", key];
+  NSLog(@"init done for key: %@", key);
+  return value;
 }
 
 
@@ -44,10 +47,13 @@
     self.values = [NSMutableDictionary dictionary];
 
     [[NSArray arrayWithObjects:
-      @"A", @"B", @"C", @"D", nil]
+      @"A", @"B", @"C", @"D", @"E", @"F", nil]
      enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
          NSString *value = [self slowInitForKey:obj];
+         dispatch_async(dispatch_get_main_queue(), ^{
+           [[NSNotificationCenter defaultCenter] postNotificationName:@"ValuesUpdated" object:obj];
+         });
          dispatch_async(valuesSerialQueue, ^{
            [self.values setObject:value forKey:obj];
          });
@@ -65,17 +71,12 @@
 
 - (NSString *)valueForKey:(NSString *)key {
   __block NSString *result = nil;
-  
-  dispatch_sync(valuesSerialQueue, ^{
-    result = [self.values objectForKey:key];
-  });
-  
-  while (result == nil) {
+  do {
     // keep polling until there's a value
     dispatch_sync(valuesSerialQueue, ^{
       result = [self.values objectForKey:key];
     });
-  }
+  } while (result == nil);
   return result;
 }
 

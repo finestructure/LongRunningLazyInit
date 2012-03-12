@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Globals.h"
 
 @interface ViewController ()
 
@@ -14,10 +15,21 @@
 
 @implementation ViewController
 
+@synthesize textView = _textView;
+
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+  self.textView.text = @"";
+  [[NSNotificationCenter defaultCenter] addObserverForName:@"ValuesUpdated" object:nil queue:nil usingBlock:^(NSNotification *note) {
+    NSString *key = note.object;
+    NSString *value = [[Globals shared] valueForKey:key];
+    NSMutableString *text = [NSMutableString stringWithString:self.textView.text];
+    [text appendString:[NSString stringWithFormat:@"key %@ : %@\n", key, value]];
+    self.textView.text = text;
+  }];
 }
 
 - (void)viewDidUnload
@@ -29,6 +41,12 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
   return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+
+- (IBAction)buttonPressed:(id)sender {
+  NSLog(@"pressed");
+  [Globals shared];
 }
 
 @end
