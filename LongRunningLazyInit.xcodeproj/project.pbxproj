@@ -15,6 +15,7 @@
 		5A31337D150DF60A00D04F62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A31337C150DF60A00D04F62 /* AppDelegate.m */; };
 		5A313380150DF60A00D04F62 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A31337F150DF60A00D04F62 /* ViewController.m */; };
 		5A313383150DF60A00D04F62 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A313381150DF60A00D04F62 /* ViewController.xib */; };
+		5A31338B150DF65900D04F62 /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A31338A150DF65900D04F62 /* Globals.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		5A31337E150DF60A00D04F62 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		5A31337F150DF60A00D04F62 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		5A313382150DF60A00D04F62 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		5A313389150DF65900D04F62 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
+		5A31338A150DF65900D04F62 /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 				5A31337F150DF60A00D04F62 /* ViewController.m */,
 				5A313381150DF60A00D04F62 /* ViewController.xib */,
 				5A313373150DF60A00D04F62 /* Supporting Files */,
+				5A313389150DF65900D04F62 /* Globals.h */,
+				5A31338A150DF65900D04F62 /* Globals.m */,
 			);
 			path = LongRunningLazyInit;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				5A313379150DF60A00D04F62 /* main.m in Sources */,
 				5A31337D150DF60A00D04F62 /* AppDelegate.m in Sources */,
 				5A313380150DF60A00D04F62 /* ViewController.m in Sources */,
+				5A31338B150DF65900D04F62 /* Globals.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
